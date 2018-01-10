@@ -1,0 +1,68 @@
+body {
+  color: #5a3200;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: #ffd700;
+}
+
+.card {
+  margin-top: 30px;
+}
+
+/* Navbar */
+.info-header > .col > a {
+  color: #5a3200;
+  font-size: 14px;
+}
+
+.info-header > .col > a:hover {
+  color: #211200;
+  text-decoration: none;
+}
+
+/* Modal */
+.modal {
+  color: black;
+}
+
+.modal-close-button {
+  font-size: 15px;
+  margin-bottom: 3px;
+}
+
+.card-header, .card .list-group-item {
+  padding: 8px;
+}
+
+.fa-download {
+  margin-right: 6px;
+  font-size: 13.5px;
+}
+
+#download-pro-card {
+  background-color: #ffd700;
+}
+
+#download-pro-card > .card-header {
+  color: #5a3200;
+}
+
+/* Logo */
+#logo-img {
+  width: 60px;
+  display: block;
+}
+
+#logo {
+  font-size: 26px;
+  font-weight: 900;
+}
+
+/* Badge */
+
+.badges {
+  font-size: 1.2em;
+}
+
+.badge > i {
+  margin-right: 5px;
+}
