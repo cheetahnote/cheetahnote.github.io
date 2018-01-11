@@ -1,0 +1,17 @@
+{
+    "name": "치타노트",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png?v=yyakjOrbld",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-384x384.png?v=yyakjOrbld",
+            "sizes": "384x384",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#ffd700",
+    "background_color": "#ffd700"
+}
