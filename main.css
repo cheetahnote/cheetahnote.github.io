@@ -5,10 +5,21 @@ body {
 }
 
 .card {
-  margin-top: 30px;
+  margin-top: 7vh;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 0px !important;
+}
+
+.shadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 /* Navbar */
+.info-header {
+  margin-top: 4vh;
+}
+
 .info-header > .col > a {
   color: #5a3200;
   font-size: 14px;
@@ -50,6 +61,7 @@ body {
 #logo-img {
   width: 60px;
   display: block;
+  margin-top: 9vh;
 }
 
 #logo {
@@ -65,4 +77,10 @@ body {
 
 .badge > i {
   margin-right: 5px;
+}
+
+footer {
+  font-size: 0.9em;
+  margin-top: 7vh;
+  margin-bottom: 7vh;
 }
