@@ -1,86 +1,82 @@
 body {
-  color: #5a3200;
   font-family: 'Helvetica Neue', Arial, sans-serif;
-  background-color: #ffd700;
 }
 
-.card {
-  margin-top: 7vh;
-  margin-left: 1rem;
-  margin-right: 1rem;
-  margin-bottom: 0px !important;
+p, h1, h2, h3, h4, h5, h6 {
+  margin: 0px;
 }
 
-.shadow {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.container-fluid > .row {
+  min-height: 100vh;
 }
 
-/* Navbar */
-.info-header {
-  margin-top: 4vh;
+.align-center {
+  display: flex;
+  align-items: center;
 }
 
-.info-header > .col > a {
-  color: #5a3200;
-  font-size: 14px;
+/* Badge */
+.badge {
+  padding: 5px 8px;
+  font-size: 0.6em;
 }
 
-.info-header > .col > a:hover {
-  color: #211200;
-  text-decoration: none;
+.badge > svg {
+  height: 11px;
+  margin-right: 5px;
 }
 
-/* Modal */
-.modal {
-  color: black;
+#logo {
+  width: 60px;
 }
 
-.modal-close-button {
-  font-size: 15px;
-  margin-bottom: 3px;
-}
-
-.card-header, .card .list-group-item {
-  padding: 8px;
-}
+/* Download */
 
 .fa-download {
   margin-right: 6px;
-  font-size: 13.5px;
+  margin-left: 1px;
 }
 
 #download-pro-card {
   background-color: #ffd700;
 }
 
-#download-pro-card > .card-header {
-  color: #5a3200;
+#description {
+  font-size: 1em;
+  font-weight: 500;
 }
 
-/* Logo */
-#logo-img {
-  width: 60px;
-  display: block;
-  margin-top: 9vh;
-}
-
-#logo {
-  font-size: 26px;
-  font-weight: 900;
-}
-
-/* Badge */
-
-.badges {
-  font-size: 1.2em;
-}
-
-.badge > i {
-  margin-right: 5px;
-}
-
-footer {
+#footer {
   font-size: 0.9em;
-  margin-top: 7vh;
-  margin-bottom: 7vh;
+  color: gray;
+}
+
+#footer a {
+  color: gray;
+  text-decoration: underline;
+}
+
+#screenshot-carousel-wrapper {
+  background-color: #ffd700;
+  padding: 8px;
+  padding-top: 18px;
+}
+
+.carousel-item img {
+  height: 350px;
+}
+
+.carousel-item .title {
+  color: #5a3200;
+  margin-top: 20px;
+}
+
+.carousel-control-prev, .carousel-control-next {
+  width: 4%;
+}
+
+@media (min-width: 768px) {
+  .carousel-item img {
+    height: 500px;
+  }
 }
