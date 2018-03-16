@@ -1,5 +1,6 @@
 {
     "name": "치타노트",
+    "short_name": "치타노트",
     "icons": [
         {
             "src": "/android-chrome-192x192.png?v=yyakjOrbld",
