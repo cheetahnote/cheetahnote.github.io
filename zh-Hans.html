@@ -2,7 +2,7 @@
 <html lang="zh-Hans">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>猎豹笔记 - 快速笔记、小组件、手表</title>
   <meta name="description" content="猎豹笔记是一款简洁而强大的笔记应用。支持 iCloud 同步、桌面小组件、Apple Watch，随时随地随手记录。" />
   <meta name="keywords" content="猎豹笔记, 快速, 简洁, 备忘录, 便签, 便条, 速记, 记事本, 小组件, 桌面, 锁屏, 手表, 清单, 购物清单, 待办事项, 日记, 记录, 写作, 同步, 备份, 捷径, note" />
@@ -13,6 +13,7 @@
   <link rel="alternate" hreflang="ko" href="https://cheetahnote.com/ko.html" />
   <link rel="alternate" hreflang="zh-Hans" href="https://cheetahnote.com/zh-Hans.html" />
   <link rel="alternate" hreflang="x-default" href="https://cheetahnote.com" />
+  <link rel="alternate" type="text/markdown" href="https://cheetahnote.com/llms.txt" title="LLM Context" />
 
   <!-- Apple Smart App Banner -->
   <meta name="apple-itunes-app" content="app-id=956698820" />
@@ -26,8 +27,8 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5a3200" />
   <link rel="manifest" href="site.webmanifest" />
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#f8f9fb" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#06080d" media="(prefers-color-scheme: dark)" />
 
   <!-- Open Graph / Facebook Meta -->
   <meta property="og:type" content="website" />
@@ -59,9 +60,24 @@
       {
         "@type": "SoftwareApplication",
         "name": "猎豹笔记",
-        "description": "猎豹笔记是一款简洁而强大的笔记应用。支持 iCloud 同步、桌面小组件、Apple Watch，随时随地随手记录。",
+        "alternateName": ["Cheetah Note", "치타노트"],
+        "description": "猎豹笔记是一款简洁而强大的纯文本笔记应用。支持 iCloud 同步、桌面与锁屏小组件、历史记录恢复以及 Apple Watch，随时随地随手记录。",
         "applicationCategory": "ProductivityApplication",
         "operatingSystem": "iOS, iPadOS, watchOS",
+        "author": {
+          "@type": "Person",
+          "name": "Jason Nam",
+          "url": "https://jasonnam.com/"
+        },
+        "featureList": [
+          "即开即写的极简纯文本速记体验",
+          "支持 iOS 主屏幕与锁屏小组件置顶备忘",
+          "支持 Apple Watch 独立应用（语音听写与抬腕查看）及 iMessage 分享",
+          "通过个人 Apple iCloud 在 iPhone、iPad 和 Apple Watch 间自动加密同步",
+          "内置编辑历史记录恢复与归档整理功能",
+          "支持 Siri 快捷指令自动化与 iOS Spotlight 全局搜索",
+          "无需注册账号，零个人数据追踪"
+        ],
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -118,79 +134,156 @@
   </script>
 
   <style>
+    :root {
+      color-scheme: light dark;
+
+      --bg-base: #f8f9fb;
+      --hero-glow: rgba(217, 142, 42, 0.24);
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --title-gradient: linear-gradient(180deg, #0f172a 0%, #334155 100%);
+
+      --card-bg: rgba(255, 255, 255, 0.84);
+      --card-border: rgba(15, 23, 42, 0.075);
+      --card-shadow:
+        0 12px 28px -8px rgba(15, 23, 42, 0.05),
+        0 2px 6px -1px rgba(15, 23, 42, 0.025),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
+
+      --pill-bg: rgba(255, 255, 255, 0.76);
+      --pill-border: rgba(15, 23, 42, 0.08);
+      --pill-active: rgba(15, 23, 42, 0.07);
+      --pill-shadow: 0 4px 14px -3px rgba(15, 23, 42, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
+
+      --icon-shadow: 0 18px 38px -8px rgba(15, 23, 42, 0.14), 0 4px 12px -2px rgba(15, 23, 42, 0.06);
+      --screenshot-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.10), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+      --divider: rgba(15, 23, 42, 0.08);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-base: #06080d;
+        --hero-glow: rgba(232, 178, 98, 0.12);
+        --text-primary: #f4f6fa;
+        --text-secondary: #9ca8bc;
+        --text-muted: #687385;
+        --title-gradient: linear-gradient(180deg, #ffffff 0%, #c8d2e2 100%);
+
+        --card-bg: rgba(255, 255, 255, 0.035);
+        --card-border: rgba(255, 255, 255, 0.085);
+        --card-shadow:
+          0 18px 36px -10px rgba(0, 0, 0, 0.55),
+          inset 0 1px 0 0 rgba(255, 255, 255, 0.11);
+
+        --pill-bg: rgba(15, 20, 32, 0.62);
+        --pill-border: rgba(255, 255, 255, 0.11);
+        --pill-active: rgba(255, 255, 255, 0.12);
+        --pill-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.45), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+
+        --icon-shadow: 0 22px 44px -8px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.1);
+        --screenshot-shadow: 0 20px 42px -10px rgba(0, 0, 0, 0.65);
+        --divider: rgba(255, 255, 255, 0.09);
+      }
+    }
+
     /* Lightweight structural layout & accessible typography */
     * {
       box-sizing: border-box;
     }
 
+    html,
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-      line-height: 1.6;
-      color: #111;
-      background-color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+      line-height: 1.62;
+      color: var(--text-primary);
+      background-color: var(--bg-base);
+      background-image: radial-gradient(ellipse 85% 440px at 50% 0%, var(--hero-glow), transparent 72%);
+      background-repeat: no-repeat;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     a {
       color: inherit;
       text-decoration: underline;
       text-decoration-thickness: 1px;
-      text-underline-offset: 2px;
+      text-underline-offset: 3px;
     }
 
     a:focus-visible,
     summary:focus-visible {
-      outline: 2px solid #0066cc;
+      outline: 2px solid var(--text-primary);
       outline-offset: 3px;
-      border-radius: 4px;
+      border-radius: 6px;
     }
 
     header,
     main,
     footer {
-      max-width: 960px;
+      max-width: 980px;
       margin: 0 auto;
-      padding: 0 1.25rem;
+      padding-left: calc(1.5rem + env(safe-area-inset-left, 0px));
+      padding-right: calc(1.5rem + env(safe-area-inset-right, 0px));
     }
 
     /* Top Bar */
     [data-section="top-bar"] {
       display: flex;
       justify-content: flex-end;
-      padding-top: 1.25rem;
+      padding-top: calc(1.35rem + env(safe-area-inset-top, 0px));
       padding-bottom: 0.5rem;
     }
 
     [data-slot="language-switcher"] {
-      display: flex;
-      gap: 1.25rem;
-      font-size: 0.875rem;
+      display: inline-flex;
+      align-items: center;
+      height: 36px;
+      padding: 3px;
+      gap: 2px;
+      font-size: 0.8125rem;
+      background: var(--pill-bg);
+      border: 1px solid var(--pill-border);
+      box-shadow: var(--pill-shadow);
+      border-radius: 9999px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
     }
 
     [data-slot="language-switcher"] a {
+      display: inline-flex;
+      align-items: center;
+      height: 100%;
+      padding: 0 11px;
+      border-radius: 9999px;
       text-decoration: none;
-      color: #555;
+      color: var(--text-muted);
+      transition: color 0.2s ease, background 0.2s ease;
     }
 
     [data-slot="language-switcher"] a:hover {
-      text-decoration: underline;
+      color: var(--text-primary);
+      text-decoration: none;
     }
 
     [data-slot="language-switcher"] a[aria-current="page"] {
-      font-weight: 600;
-      color: #111;
-      text-decoration: underline;
+      font-weight: 500;
+      color: var(--text-primary);
+      background: var(--pill-active);
+      text-decoration: none;
     }
 
     /* Sections */
     section {
-      padding: 2.75rem 0;
+      padding: 3rem 0;
     }
 
     /* Hero */
     #hero {
       text-align: center;
-      padding-bottom: 1.5rem;
+      padding-top: 2.25rem;
+      padding-bottom: 1.75rem;
     }
 
     [data-slot="hero-icon"] img {
@@ -199,27 +292,40 @@
       border-radius: 22px;
       display: block;
       margin: 0 auto;
+      box-shadow: var(--icon-shadow);
     }
 
     #hero h1[data-field="title"] {
-      font-size: clamp(2rem, 4vw, 2.5rem);
-      line-height: 1.2;
-      margin: 1rem 0 0.5rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
+      font-size: clamp(2.15rem, 4.5vw, 2.75rem);
+      line-height: 1.18;
+      margin: 1.15rem 0 0.55rem;
+      font-weight: 650;
+      letter-spacing: -0.03em;
+      background: var(--title-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     #hero p[data-field="description"] {
-      font-size: clamp(1.05rem, 2vw, 1.2rem);
-      color: #555;
+      font-size: clamp(1.05rem, 2vw, 1.22rem);
+      color: var(--text-secondary);
       margin: 0 auto;
       max-width: 540px;
+      letter-spacing: -0.01em;
     }
 
     .platform-badges {
-      font-size: 0.85rem;
-      color: #666;
-      margin-top: 0.5rem;
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      color: var(--text-secondary);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 0.3rem 0.9rem;
+      border-radius: 9999px;
+      margin-top: 0.85rem;
     }
 
     [data-slot="store-buttons"] {
@@ -228,8 +334,8 @@
       justify-content: center;
       align-items: center;
       flex-wrap: wrap;
-      margin-top: 1.25rem;
-      margin-bottom: 2rem;
+      margin-top: 1.35rem;
+      margin-bottom: 2.75rem;
     }
 
     [data-slot="store-buttons"] a {
@@ -240,8 +346,8 @@
     /* Screenshots */
     [data-slot="screenshots-list"] {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 1.6rem;
       text-align: center;
     }
 
@@ -254,96 +360,116 @@
       max-width: 280px;
       height: auto;
       aspect-ratio: 280 / 608;
-      border-radius: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--card-border);
       display: block;
       margin: 0 auto;
+      box-shadow: var(--screenshot-shadow);
     }
 
     [data-field="screenshot-caption"] {
-      margin-top: 0.5rem;
-      font-size: 0.875rem;
-      color: #555;
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      letter-spacing: -0.01em;
     }
 
-    /* Features */
+    /* Features (Bento Cards) */
     #features {
-      padding-top: 1.5rem;
+      padding-top: 1.75rem;
     }
 
     section h2[data-field="section-title"],
     #download h2[data-field="cta-title"] {
-      font-size: clamp(1.5rem, 3vw, 1.875rem);
-      line-height: 1.25;
+      font-size: clamp(1.5rem, 3vw, 1.9rem);
+      line-height: 1.24;
       margin: 0 0 1.5rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
+      font-weight: 650;
+      letter-spacing: -0.025em;
     }
 
     [data-slot="feature-list"] {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.75rem 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 1.15rem;
+    }
+
+    [data-component="feature-item"] {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-shadow);
+      border-radius: 18px;
+      padding: 1.4rem 1.5rem;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
 
     [data-component="feature-item"] h3[data-field="feature-title"] {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 600;
-      margin: 0 0 0.35rem;
-      line-height: 1.3;
+      letter-spacing: -0.015em;
+      margin: 0 0 0.4rem;
+      line-height: 1.32;
     }
 
     [data-component="feature-item"] p[data-field="feature-description"] {
-      font-size: 0.95rem;
-      line-height: 1.55;
-      color: #555;
+      font-size: 0.925rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
       margin: 0;
     }
 
     /* Privacy Promise Box */
     #privacy-promise {
-      background-color: #fafafa;
-      border: 1px solid #eee;
-      border-radius: 12px;
-      padding: 1.75rem 1.5rem;
-      margin: 1rem 0;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-shadow);
+      border-radius: 20px;
+      padding: 1.85rem 1.75rem;
+      margin: 0.5rem 0;
     }
 
     #privacy-promise h3 {
       font-size: 1.15rem;
-      margin: 0 0 0.5rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      margin: 0 0 0.45rem;
     }
 
     #privacy-promise p {
       font-size: 0.95rem;
-      color: #555;
+      color: var(--text-secondary);
       margin: 0;
-      line-height: 1.55;
+      line-height: 1.62;
     }
 
     /* FAQ */
     #faq details {
-      border-bottom: 1px solid #eee;
-      padding: 1rem 0;
+      border-bottom: 1px solid var(--divider);
+      padding: 1.1rem 0;
     }
 
     #faq summary {
-      font-weight: 600;
-      font-size: 1.05rem;
+      font-weight: 550;
+      font-size: 1.02rem;
+      letter-spacing: -0.01em;
       cursor: pointer;
       list-style-position: inside;
       padding: 0.25rem 0;
     }
 
     #faq details p {
-      font-size: 0.95rem;
-      color: #555;
-      margin: 0.75rem 0 0;
-      line-height: 1.55;
+      font-size: 0.94rem;
+      color: var(--text-secondary);
+      margin: 0.65rem 0 0;
+      line-height: 1.62;
     }
 
     /* Download CTA */
     #download {
       text-align: center;
+      padding-bottom: 3.5rem;
     }
 
     #download h2[data-field="cta-title"] {
@@ -352,8 +478,8 @@
 
     #download p[data-field="cta-description"] {
       font-size: 1.05rem;
-      color: #555;
-      margin: 0 0 1.25rem;
+      color: var(--text-secondary);
+      margin: 0 0 1.35rem;
     }
 
     /* Footer */
@@ -364,59 +490,36 @@
       flex-wrap: wrap;
       gap: 1rem;
       padding-top: 2rem;
-      padding-bottom: 2.5rem;
-      border-top: 1px solid #e5e5e5;
-      font-size: 0.875rem;
-      color: #555;
+      padding-bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px));
+      border-top: 1px solid var(--divider);
+      font-size: 0.85rem;
+      color: var(--text-secondary);
     }
 
     footer nav {
       display: flex;
-      gap: 1.25rem;
+      gap: 1.5rem;
       flex-wrap: wrap;
+      align-items: center;
+    }
+
+    footer nav a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 40px;
+      padding: 0.35rem 0.2rem;
+      text-decoration: none;
+      color: var(--text-secondary);
+      transition: color 0.2s ease;
+    }
+
+    footer nav a:hover {
+      color: var(--text-primary);
     }
 
     footer p[data-field="copyright"] {
       margin: 0;
-    }
-
-    /* Clean Dark Mode Support */
-    @media (prefers-color-scheme: dark) {
-      body {
-        background-color: #121212;
-        color: #e5e5e5;
-      }
-
-      #hero p[data-field="description"],
-      .platform-badges,
-      [data-field="screenshot-caption"],
-      [data-component="feature-item"] p[data-field="feature-description"],
-      #privacy-promise p,
-      #faq details p,
-      #download p[data-field="cta-description"],
-      footer,
-      [data-slot="language-switcher"] a {
-        color: #a0a0a0;
-      }
-
-      [data-slot="language-switcher"] a[aria-current="page"] {
-        color: #ffffff;
-      }
-
-      #privacy-promise {
-        background-color: #1a1a1a;
-        border-color: #2a2a2a;
-      }
-
-      #faq details,
-      footer {
-        border-color: #2a2a2a;
-      }
-
-      a:focus-visible,
-      summary:focus-visible {
-        outline-color: #4da3ff;
-      }
+      color: var(--text-muted);
     }
   </style>
 </head>

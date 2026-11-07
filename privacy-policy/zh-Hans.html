@@ -2,7 +2,7 @@
 <html lang="zh-Hans">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>隐私政策 - 猎豹笔记</title>
   <meta name="description" content="猎豹笔记隐私政策。我们尊重您的隐私，不收集任何个人数据。" />
 
@@ -38,11 +38,16 @@
   <meta name="twitter:image" content="https://cheetahnote.com/og-img.png" />
 
   <style>
+    :root {
+      color-scheme: light dark;
+    }
+
     /* Lightweight structural layout & accessible typography */
     * {
       box-sizing: border-box;
     }
 
+    html,
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
@@ -69,7 +74,8 @@
     footer {
       max-width: 960px;
       margin: 0 auto;
-      padding: 0 1.25rem;
+      padding-left: calc(1.25rem + env(safe-area-inset-left, 0px));
+      padding-right: calc(1.25rem + env(safe-area-inset-right, 0px));
     }
 
     /* Top Bar */
@@ -114,7 +120,8 @@
 
     /* Content */
     main {
-      padding: 3.5rem 0 5rem;
+      padding-top: 3.5rem;
+      padding-bottom: 5rem;
       max-width: 720px;
     }
 
@@ -140,7 +147,7 @@
       flex-wrap: wrap;
       gap: 1rem;
       padding-top: 2rem;
-      padding-bottom: 2.5rem;
+      padding-bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px));
       border-top: 1px solid #e5e5e5;
       font-size: 0.875rem;
       color: #555;
@@ -158,6 +165,7 @@
 
     /* Clean Dark Mode Support */
     @media (prefers-color-scheme: dark) {
+      html,
       body {
         background-color: #121212;
         color: #e5e5e5;
