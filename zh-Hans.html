@@ -279,6 +279,12 @@
       padding: 3rem 0;
     }
 
+    @media (max-width: 640px) {
+      section {
+        padding: 2.25rem 0;
+      }
+    }
+
     /* Hero */
     #hero {
       text-align: center;
@@ -346,7 +352,7 @@
     /* Screenshots */
     [data-slot="screenshots-list"] {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr));
       gap: 1.6rem;
       text-align: center;
     }
@@ -375,6 +381,36 @@
       letter-spacing: -0.01em;
     }
 
+    @media (max-width: 640px) {
+      #hero [data-slot="store-buttons"] {
+        margin-bottom: 1.75rem;
+      }
+
+      [data-slot="screenshots-list"] {
+        display: flex;
+        gap: 1rem;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-padding-inline: calc(1.5rem + env(safe-area-inset-left, 0px));
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-x: contain;
+        margin-left: calc(-1.5rem - env(safe-area-inset-left, 0px));
+        margin-right: calc(-1.5rem - env(safe-area-inset-right, 0px));
+        padding: 0.25rem calc(1.5rem + env(safe-area-inset-left, 0px)) 1rem;
+        scrollbar-width: none;
+      }
+
+      [data-slot="screenshots-list"]::-webkit-scrollbar {
+        display: none;
+      }
+
+      [data-component="screenshot-item"] {
+        flex: 0 0 68%;
+        max-width: 240px;
+        scroll-snap-align: center;
+      }
+    }
+
     /* Features (Bento Cards) */
     #features {
       padding-top: 1.75rem;
@@ -391,7 +427,7 @@
 
     [data-slot="feature-list"] {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(270px, 100%), 1fr));
       gap: 1.15rem;
     }
 
@@ -421,13 +457,17 @@
     }
 
     /* Privacy Promise Box */
+    #privacy-section {
+      padding: 0;
+    }
+
     #privacy-promise {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       box-shadow: var(--card-shadow);
       border-radius: 20px;
       padding: 1.85rem 1.75rem;
-      margin: 0.5rem 0;
+      margin: 0;
     }
 
     #privacy-promise h3 {
@@ -571,14 +611,14 @@
         <figure data-component="screenshot-item">
           <picture>
             <source srcset="src/zh-Hans/screenshot-1.webp" type="image/webp" />
-            <img src="src/zh-Hans/screenshot-1.png" alt="iCloud 同步" width="280" height="608" data-field="screenshot-image" loading="lazy" decoding="async" />
+            <img src="src/zh-Hans/screenshot-1.png" alt="iCloud 同步" width="280" height="608" data-field="screenshot-image" decoding="async" />
           </picture>
           <figcaption data-field="screenshot-caption">iCloud 同步</figcaption>
         </figure>
         <figure data-component="screenshot-item">
           <picture>
             <source srcset="src/zh-Hans/screenshot-3.webp" type="image/webp" />
-            <img src="src/zh-Hans/screenshot-3.png" alt="专注书写" width="280" height="608" data-field="screenshot-image" loading="lazy" decoding="async" />
+            <img src="src/zh-Hans/screenshot-3.png" alt="专注书写" width="280" height="608" data-field="screenshot-image" decoding="async" />
           </picture>
           <figcaption data-field="screenshot-caption">专注书写</figcaption>
         </figure>
